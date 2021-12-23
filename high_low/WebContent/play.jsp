@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="model.Game"%>
-<%
-	Game game = (Game) session.getAttribute("game");//ゲームというクラスの運び役beans 最初gameはnull
-%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +16,12 @@
 		              <input type="submit" value="送信">
 	</form>
 	 
-	<% if(game != null){ %>
+	<c:if test="${game.user != 0}">
 	<h2>結果</h2>
-	<p>user:<%= game.getUser() %> </p>
-	<p>com:<%= game.getCom() %> </p>
-	<p><%= game.getMsg() %></p>
-	<% } %>
+	<p>user:${game.user}</p>
+	<!--<p>com:${game.com}</p>  -->
+	<p>${game.msg}</p>
+	</c:if>
 	<!--equest.getContextPath()=hige_lowのこと  -->
 	<a href="<%=request.getContextPath()%>/game?replay=yes">
 	      <button>別の数字でやる</button></a>
